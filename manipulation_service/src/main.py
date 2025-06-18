@@ -2,7 +2,6 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from enum import Enum
 import requests
-import json
 
 app = FastAPI()
 
@@ -25,6 +24,10 @@ class Contato(BaseModel):
     categoria: Categoria
     telefones: list[Telefone]
 
+@app.get("/")
+def home():
+    return "hello!"
+
 @app.post("/criar_lista_de_contatos")
 def criar_lista_de_contatos():
     try:
@@ -34,7 +37,7 @@ def criar_lista_de_contatos():
             Contato(nome="Pedro Santos", categoria=Categoria.comercial, telefones=[Telefone(numero="1234567890", tipo=Tipo.comercial)]),
         ]
         for contato in contatos:
-           response = requests.post("http://localhost:8004/contato", json=contato.model_dump(mode="json"))
+           response = requests.post("http://api_contato:8004/contato", json=contato.model_dump(mode="json"))
     except requests.RequestException as e:
         raise e
     return {"message": "Contatos preenchidos com sucesso"}
@@ -42,7 +45,7 @@ def criar_lista_de_contatos():
 @app.get("/listar_contatos")
 def listar_contatos():
     try:
-        response = requests.get("http://localhost:8004/listar_contatos")
+        response = requests.get("http://api_contato:8004/listar_contatos")
         return response.json() 
     except requests.RequestException as e:
         raise e
@@ -50,7 +53,7 @@ def listar_contatos():
 @app.get("/listar_contato_do_joao")
 def listar_contato_do_joao():
     try:
-        response = requests.get("http://localhost:8004/contato/Jo%C3%A3o%20da%20Silva")
+        response = requests.get("http://api_contato:8004/contato/Jo%C3%A3o%20da%20Silva")
         return response.json() 
     except requests.RequestException as e:
         raise e
