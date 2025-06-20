@@ -24,10 +24,6 @@ class Contato(BaseModel):
     categoria: Categoria
     telefones: list[Telefone]
 
-@app.get("/")
-def home():
-    return "hello!"
-
 @app.post("/criar_lista_de_contatos")
 def criar_lista_de_contatos():
     try:

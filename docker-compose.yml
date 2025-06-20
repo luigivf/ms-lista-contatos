@@ -10,3 +10,10 @@ services:
       - "8005:8005"
     depends_on:
       - api_contato
+  
+  api_graphql:
+    build: ./graphql_gateway
+    ports:
+      - "8006:8006"
+    depends_on:
+      - api_contato

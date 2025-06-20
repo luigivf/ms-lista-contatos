@@ -1,0 +1,18 @@
+# --- Tipos ---
+
+type Telefone {
+    numero: String!
+    tipo: String!
+}
+
+type Contato {
+    nome: String!
+    categoria: String!
+    telefones: [Telefone!]!
+}
+
+# --- Queries ---
+
+type Query{
+    contatos: [Contato!]!
+}
