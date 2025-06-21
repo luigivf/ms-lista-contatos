@@ -17,3 +17,4 @@ services:
       - "8006:8006"
     depends_on:
       - api_contato
+      - api_manipulation

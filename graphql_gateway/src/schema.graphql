@@ -15,4 +15,34 @@ type Contato {
 
 type Query{
     contatos: [Contato!]!
+    contato(nome: String!): Contato 
+}
+
+# -- Mutation Inputs --
+
+input TelefoneInput {
+    numero: String!
+    tipo: String!
+}
+
+input ContatoInput {
+    nome: String!
+    categoria: String!
+    telefones: [TelefoneInput!]!
+}
+
+# -- Mutation
+type Mutation{
+    createContato(input: ContatoInput!): ContatoResponse!
+    fillListaDeContatos: FillListaDeContatosResponse!
+}
+
+type ContatoResponse{
+    message: String!
+    contato: Contato!
+}
+
+type FillListaDeContatosResponse{
+    message: String!
+    contato: [Contato!]!
 }
