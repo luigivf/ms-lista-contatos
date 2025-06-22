@@ -7,6 +7,7 @@ O projeto é composto por 2 microsserviços e 1 gateway GraphQL:
 3- gateway_graphql (porta 8006): Gateway SQL conecta com ambos os serviços e realiza as querys e mutations. Chamadas de exemplo abaixo:
 
 // carregar lista de contato
+
 mutation {
   fillListaDeContatos {
     message
@@ -22,9 +23,11 @@ mutation {
 }
 
 // listar o nome dos integrantes da lista
+
 {contatos{nome}}
 
 // criar o contato chamado "Luigi"
+
 mutation{
   createContato(input: 
     {
@@ -44,4 +47,5 @@ mutation{
 }
 
 //pesquisar o contato
+
 {contato(nome: "Luigi"){nome categoria}}
